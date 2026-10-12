@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ngallo Chongo | Data Engineer</title>
+<meta name="description" content="Ngallo Chongo is a data engineer in Zambia who builds ETL pipelines, reliability systems and Power BI dashboards for mining and health programmes.">
+<meta name="theme-color" content="#0A1220">
+<meta property="og:title" content="Ngallo Chongo | Data Engineer">
+<meta property="og:description" content="ETL pipelines, reliability systems and dashboards for mining and health programmes.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230A1220'/%3E%3Cpath d='M8 44 L22 28 L32 38 L44 18 L56 30' fill='none' stroke='%234FD1C5' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #0A1220;
+    --panel: #101B2D;
+    --panel-hover: #142238;
+    --line: #1F2F47;
+    --text: #E4EAF2;
+    --muted: #93A3B8;
+    --signal: #4FD1C5;
+    --brass: #E3B65C;
+    --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+    --body: "Instrument Sans", "Segoe UI", system-ui, sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--body);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; border-radius: 4px; }
+
+  .wrap { width: min(1080px, 100% - 2.5rem); margin-inline: auto; }
+
+  /* Header */
+  .site-header { padding-block: 1.5rem; }
+  .site-header .wrap { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+  .brand { font-family: var(--display); font-weight: 700; text-decoration: none; letter-spacing: -0.01em; }
+  .nav { display: flex; gap: 1.5rem; }
+  .nav a { color: var(--muted); text-decoration: none; font-weight: 500; font-size: 0.97rem; }
+  .nav a:hover { color: var(--text); }
+
+  /* Hero */
+  .hero { padding-block: clamp(2.5rem, 7vw, 5rem) 2.5rem; }
+  .hero h1 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(2.8rem, 8vw, 6rem);
+    line-height: 0.98;
+    letter-spacing: -0.035em;
+    margin: 0 0 1.25rem;
+  }
+  .hero .pitch {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: clamp(1.3rem, 2.8vw, 1.9rem);
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: var(--signal);
+    max-width: 30ch;
+    margin: 0 0 1.25rem;
+  }
+  .hero .intro { color: var(--muted); max-width: 62ch; margin: 0 0 1.75rem; }
+  .actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+  .btn {
+    display: inline-block;
+    padding: 0.7rem 1.25rem;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.98rem;
+    text-decoration: none;
+    border: 1px solid var(--line);
+    color: var(--text);
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .btn:hover { background: var(--panel-hover); border-color: var(--muted); }
+  .btn-primary { background: var(--signal); border-color: var(--signal); color: #04201D; }
+  .btn-primary:hover { background: #7BE0D6; border-color: #7BE0D6; }
+
+  /* Signal figure */
+  .signal { margin: 0 0 1rem; }
+  .signal-box {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 1rem 1rem 0.5rem;
+    overflow: hidden;
+  }
+  .signal-top { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; padding: 0 0.25rem 0.5rem; font-size: 0.9rem; color: var(--muted); }
+  .signal-top output { color: var(--brass); font-variant-numeric: tabular-nums; font-weight: 600; }
+  #signal-svg { display: block; width: 100%; height: auto; }
+  .signal figcaption { color: var(--muted); font-size: 0.92rem; max-width: 74ch; padding: 0.75rem 0.25rem 0; }
+
+  /* Sections */
+  .section { padding-block: clamp(3rem, 7vw, 5rem) 0; }
+  .section h2 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(1.7rem, 3.6vw, 2.4rem);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin: 0 0 0.5rem;
+  }
+  .section .lead { color: var(--muted); max-width: 62ch; margin: 0 0 2rem; }
+
+  /* Projects */
+  .projects { border-top: 1px solid var(--line); }
+  .project { border-bottom: 1px solid var(--line); }
+  .project summary {
+    list-style: none;
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.25rem 1.5rem;
+    align-items: start;
+    padding: 1.4rem 0.25rem;
+  }
+  .project summary::-webkit-details-marker { display: none; }
+  .project summary:hover .p-title { color: var(--signal); }
+  .p-title { font-family: var(--display); font-weight: 700; font-size: 1.3rem; letter-spacing: -0.01em; line-height: 1.25; transition: color 0.15s; }
+  .p-one { grid-column: 1; color: var(--muted); max-width: 64ch; }
+  .p-where { grid-column: 2; grid-row: 1; color: var(--muted); font-size: 0.92rem; text-align: right; white-space: nowrap; display: flex; align-items: center; gap: 0.75rem; }
+  .chev { width: 10px; height: 10px; border-right: 2px solid var(--signal); border-bottom: 2px solid var(--signal); transform: rotate(45deg); transition: transform 0.2s; margin-top: -3px; }
+  .project[open] .chev { transform: rotate(-135deg); margin-top: 3px; }
+
+  .p-body { padding: 0 0.25rem 1.75rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem 3rem; }
+  .p-body h3 { font-family: var(--display); font-size: 1rem; font-weight: 700; margin: 0 0 0.4rem; color: var(--brass); letter-spacing: 0; }
+  .p-body ul { margin: 0; padding-left: 1.1rem; }
+  .p-body li { margin-bottom: 0.35rem; }
+  .p-body p { margin: 0; }
+  .p-wide { grid-column: 1 / -1; }
+  .p-body .stack { display: flex; flex-wrap: wrap; gap: 0.5rem; padding: 0; margin: 0; list-style: none; }
+  .stack li { margin: 0; font-size: 0.88rem; padding: 0.2rem 0.65rem; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); background: var(--panel); }
+
+  /* Experience */
+  .jobs { border-top: 1px solid var(--line); }
+  .job { display: grid; grid-template-columns: 11rem 1fr; gap: 0.5rem 2rem; padding: 1.4rem 0.25rem; border-bottom: 1px solid var(--line); }
+  .job .when { color: var(--muted); font-size: 0.95rem; }
+  .job h3 { font-family: var(--display); font-size: 1.15rem; margin: 0; letter-spacing: -0.005em; }
+  .job .org { color: var(--signal); font-weight: 500; margin: 0 0 0.5rem; }
+  .job p.what { margin: 0; color: var(--muted); max-width: 66ch; }
+
+  /* Skills */
+  .skills { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.75rem 3rem; }
+  .skills h3 { font-family: var(--display); font-size: 1.05rem; margin: 0 0 0.4rem; }
+  .skills p { margin: 0; color: var(--muted); }
+
+  /* Contact */
+  .contact { padding-bottom: 4rem; }
+  .contact-links { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem; }
+  footer { border-top: 1px solid var(--line); padding-block: 1.5rem; color: var(--muted); font-size: 0.9rem; }
+
+  @media (max-width: 720px) {
+    .p-body, .skills { grid-template-columns: 1fr; }
+    .job { grid-template-columns: 1fr; }
+    .project summary { grid-template-columns: 1fr; }
+    .p-where { grid-column: 1; grid-row: auto; text-align: left; justify-content: space-between; white-space: normal; order: -1; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { transition: none !important; }
+  }
+</style>
+</head>
+
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="#top">Ngallo Chongo</a>
+    <nav class="nav" aria-label="Main">
+      <a href="#work">Work</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <h1>Ngallo Chongo</h1>
+      <p class="pitch">I turn industrial and health data into decisions people can trust.</p>
+      <p class="intro">Data engineer with four years of experience building ETL pipelines, reliability systems and Power BI dashboards. I currently work on asset reliability at First Quantum Minerals in Zambia, and before that on national HIV analytics for USAID programmes.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="#work">See my work</a>
+        <a class="btn" href="Ngallo_Chongo_CV_2026.pdf" download>Download CV</a>
+        <a class="btn" href="mailto:Zingallochongo@gmail.com">Email me</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <figure class="signal">
+      <div class="signal-box">
+        <div class="signal-top">
+          <span>Sensor readings, uneven gaps between samples</span>
+          <span>Area under the curve: <output id="area" aria-live="off">0.0</output></span>
+        </div>
+        <svg id="signal-svg" role="img" aria-label="Chart of irregular sensor readings joined by a line, with the area underneath filled in as a row of trapezoids."></svg>
+      </div>
+      <figcaption>Simulated data. Each shaded slice is one trapezoid between two readings. This is the same method I use in my PI System to SQL pipeline to get accurate totals from time-series data that isn't sampled at even intervals.</figcaption>
+    </figure>
+  </div>
+
+  <section class="section" id="work">
+    <div class="wrap">
+      <h2>Selected work</h2>
+      <p class="lead">Open a project to see what it does, how it's built and what changed. Company data stays private, so these are descriptions of the systems rather than live demos.</p>
+
+      <div class="projects">
+
+        <details class="project">
+          <summary>
+            <span class="p-title">Reliability monitoring and root cause analysis system</span>
+            <span class="p-where">Mining, First Quantum Minerals <span class="chev" aria-hidden="true"></span></span>
+            <span class="p-one">One place to track asset health, investigate incidents and follow actions through to closure.</span>
+          </summary>
+          <div class="p-body">
+            <div>
+              <h3>What it does</h3>
+              <p>Supports incident investigation, root cause analysis workflows and action tracking in a mining environment, with a full audit trail.</p>
+            </div>
+            <div>
+              <h3>How it's built</h3>
+              <ul>
+                <li>Role-based access and server-side validation</li>
+                <li>Evidence handling through documents and URLs</li>
+                <li>Clean separation between API and user interface</li>
+                <li>Power BI integration for executive dashboards</li>
+              </ul>
+            </div>
+            <div class="p-wide">
+              <h3>What changed</h3>
+              <p>Reliability incidents became easier to see, root cause analysis followed one standard process, and maintenance decisions could be backed by data.</p>
+            </div>
+            <ul class="stack p-wide"><li>ASP.NET Core MVC and Web API (.NET 8)</li><li>SQL Server</li><li>Entity Framework Core</li><li>Power BI</li><li>Bootstrap 5</li><li>IIS</li></ul>
+          </div>
+        </details>
+
+        <details class="project">
+          <summary>
+            <span class="p-title">PI System to SQL ETL with time-weighted calculations</span>
+            <span class="p-where">Mining, First Quantum Minerals <span class="chev" aria-hidden="true"></span></span>
+            <span class="p-one">An automated pipeline that moves time-series process data into SQL Server with totals that match the source.</span>
+          </summary>
+          <div class="p-body">
+            <div>
+              <h3>What it does</h3>
+              <p>Extracts time-series data from the OSIsoft PI System and loads analysis-ready datasets into SQL Server, without anyone running exports by hand.</p>
+            </div>
+            <div>
+              <h3>How it's built</h3>
+              <ul>
+                <li>Time-weighted and trapezoidal integration that copes with irregular sampling</li>
+                <li>Results checked against PI's own calculated totals</li>
+                <li>Time zones aligned across systems</li>
+                <li>Scheduled, hands-free runs through Windows Task Scheduler</li>
+              </ul>
+            </div>
+            <div class="p-wide">
+              <h3>What changed</h3>
+              <p>Process performance calculations became more reliable and manual extraction errors were removed.</p>
+            </div>
+            <ul class="stack p-wide"><li>PI Web API</li><li>Python</li><li>SQL Server</li><li>Power BI</li><li>Windows Task Scheduler</li></ul>
+          </div>
+        </details>
+
+        <details class="project">
+          <summary>
+            <span class="p-title">Real-time reliability dashboards</span>
+            <span class="p-where">Mining, First Quantum Minerals <span class="chev" aria-hidden="true"></span></span>
+            <span class="p-one">Interactive Power BI reports for equipment reliability, RCA status, maintenance actions and operational KPIs.</span>
+          </summary>
+          <div class="p-body">
+            <div>
+              <h3>What it does</h3>
+              <p>Gives management and reliability teams a live view of equipment and maintenance performance, for reviews, audits and planning.</p>
+            </div>
+            <div>
+              <h3>How it's built</h3>
+              <ul>
+                <li>Drill-through reports from summary to detail</li>
+                <li>Conditional formatting that highlights what needs attention</li>
+                <li>Links from report items to supporting documents in SharePoint</li>
+              </ul>
+            </div>
+            <div class="p-wide">
+              <h3>What changed</h3>
+              <p>Teams could see current reliability data and act on it faster.</p>
+            </div>
+            <ul class="stack p-wide"><li>Power BI</li><li>SQL Server</li><li>SharePoint</li></ul>
+          </div>
+        </details>
+
+        <details class="project">
+          <summary>
+            <span class="p-title">Smart Bolt monitoring for SAG and ball mills</span>
+            <span class="p-where">Mining, First Quantum Minerals <span class="chev" aria-hidden="true"></span></span>
+            <span class="p-one">Torque and vibration data from sensor bolts, used to catch problems before they damage the mill shell.</span>
+          </summary>
+          <div class="p-body">
+            <div>
+              <h3>What it does</h3>
+              <p>Collects telemetry from Smart Bolts fitted on SAG and ball mills so bolt health can be assessed and acted on early. Built with the mechanical and data teams.</p>
+            </div>
+            <div>
+              <h3>How it's built</h3>
+              <ul>
+                <li>ETL routines to collect, transform and load the telemetry</li>
+                <li>Power BI dashboards showing bolt health in real time</li>
+              </ul>
+            </div>
+            <div class="p-wide">
+              <h3>What changed</h3>
+              <p>Maintenance teams could step in early and prevent costly mill shell damage.</p>
+            </div>
+            <ul class="stack p-wide"><li>IoT sensors</li><li>ETL</li><li>Power BI</li><li>SQL Server</li></ul>
+          </div>
+        </details>
+
+        <details class="project">
+          <summary>
+            <span class="p-title">Triaxial sensor equipment health monitoring</span>
+            <span class="p-where">Mining, Sentinel Mine <span class="chev" aria-hidden="true"></span></span>
+            <span class="p-one">High-frequency vibration, acceleration and temperature data used to spot wear and misalignment early.</span>
+          </summary>
+          <div class="p-body">
+            <div>
+              <h3>What it does</h3>
+              <p>Brings telemetry from Dynamox triaxial sensors into one place for asset condition monitoring.</p>
+            </div>
+            <div>
+              <h3>How it's built</h3>
+              <ul>
+                <li>Processing of vibration, acceleration and temperature signals</li>
+                <li>Sensor data linked into predictive modelling workflows</li>
+              </ul>
+            </div>
+            <div class="p-wide">
+              <h3>What changed</h3>
+              <p>Early detection of equipment degradation improved uptime.</p>
+            </div>
+            <ul class="stack p-wide"><li>Dynamox sensors</li><li>Python</li><li>SQL Server</li><li>Power BI</li><li>Machine learning</li></ul>
+          </div>
+        </details>
+
+        <details class="project">
+          <summary>
+            <span class="p-title">WhatsApp Business alerts for critical events</span>
+            <span class="p-where">Mining, First Quantum Minerals <span class="chev" aria-hidden="true"></span></span>
+            <span class="p-one">Automated messages that put reliability alerts in front of field and management teams quickly.</span>
+          </summary>
+          <div class="p-body">
+            <div>
+              <h3>What it does</h3>
+              <p>Sends alerts and notifications from enterprise applications over WhatsApp Business.</p>
+            </div>
+            <div>
+              <h3>How it's built</h3>
+              <ul>
+                <li>API-based messaging with webhook handling</li>
+                <li>Delivery and read receipts</li>
+                <li>Secure logging of every message</li>
+              </ul>
+            </div>
+            <div class="p-wide">
+              <h3>What changed</h3>
+              <p>Communication of critical reliability events became faster and more visible than SMS and email.</p>
+            </div>
+            <ul class="stack p-wide"><li>WhatsApp Business API</li><li>ASP.NET Core</li><li>SQL Server</li><li>Webhooks</li></ul>
+          </div>
+        </details>
+
+        <details class="project">
+          <summary>
+            <span class="p-title">USAID Action HIV Insights analytics reporting system</span>
+            <span class="p-where">Health, Right to Care <span class="chev" aria-hidden="true"></span></span>
+            <span class="p-one">New modules and a front-end migration for a reporting system supporting national health programmes.</span>
+          </summary>
+          <div class="p-body">
+            <div>
+              <h3>What it does</h3>
+              <p>Provides analytics and reporting for HIV programmes, aligned with PEPFAR reporting standards.</p>
+            </div>
+            <div>
+              <h3>What I did</h3>
+              <ul>
+                <li>Designed and built new modules in ASP.NET Core, Angular and C#</li>
+                <li>Led the migration from Blazor to Angular</li>
+                <li>Reviewed code for security and performance</li>
+                <li>Worked with cross-functional teams to gather requirements</li>
+              </ul>
+            </div>
+            <div class="p-wide">
+              <h3>What changed</h3>
+              <p>A more scalable application with a better experience for more than 200 healthcare workers, running at 99.5% uptime.</p>
+            </div>
+            <ul class="stack p-wide"><li>ASP.NET Core</li><li>Angular</li><li>C#</li><li>SQL Server</li><li>Power BI</li><li>Azure DevOps</li></ul>
+          </div>
+        </details>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="experience">
+    <div class="wrap">
+      <h2>Experience</h2>
+      <p class="lead">From field data collection in health programmes to engineering data platforms in mining.</p>
+      <div class="jobs">
+        <div class="job">
+          <div class="when">Mar 2025 to now</div>
+          <div>
+            <h3>Data Analyst, Engineering and Reliability</h3>
+            <p class="org">First Quantum Minerals, North-Western Province</p>
+            <p class="what">Build pipelines that bring IoT sensor, PI System and ERP data (Pronto Xi, JDE) into one analytics platform, with real-time Power BI dashboards and scheduled ETL for reliability teams.</p>
+          </div>
+        </div>
+        <div class="job">
+          <div class="when">Jul 2023 to Apr 2025</div>
+          <div>
+            <h3>Applications Developer</h3>
+            <p class="org">Right to Care (USAID), Lusaka</p>
+            <p class="what">Built and maintained the USAID Action HIV Insights reporting system, led the Blazor to Angular migration and ran code reviews for the development team.</p>
+          </div>
+        </div>
+        <div class="job">
+          <div class="when">Oct 2022 to Feb 2023</div>
+          <div>
+            <h3>Assistant Data Support and Operations Manager</h3>
+            <p class="org">Kazang Zambia, Lusaka</p>
+            <p class="what">Built inventory and customer management systems in Laravel and Vue.js, produced compliance reports for the Bank of Zambia, and cut manual data processing time by 60% through automated scripts.</p>
+          </div>
+        </div>
+        <div class="job">
+          <div class="when">Jan 2022 to Oct 2022</div>
+          <div>
+            <h3>Data Analyst / Associate</h3>
+            <p class="org">CIDRZ, Lusaka</p>
+            <p class="what">Led data validation and analytics for health indicators, improved the Life Logistics App, and trained more than 30 data capturers on data quality and reporting.</p>
+          </div>
+        </div>
+        <div class="job">
+          <div class="when">Feb 2021 to Jan 2022</div>
+          <div>
+            <h3>Strategic Information Intern</h3>
+            <p class="org">CIDRZ, Lusaka</p>
+            <p class="what">Designed electronic data collection tools with ODK and RapidPro, supported PEPFAR MER indicators and automated repetitive project workflows with Python.</p>
+          </div>
+        </div>
+        <div class="job">
+          <div class="when">Graduated Nov 2019</div>
+          <div>
+            <h3>BSc Computer Science</h3>
+            <p class="org">Mulungushi University, Kabwe</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="skills">
+    <div class="wrap">
+      <h2>Skills</h2>
+      <p class="lead">The tools I reach for most often.</p>
+      <div class="skills">
+        <div>
+          <h3>Data engineering</h3>
+          <p>ETL and ELT pipelines, real-time processing, Apache Kafka, Apache Spark, SSIS, PI Web API, OSIsoft PI System, IoT sensor data, data modelling</p>
+        </div>
+        <div>
+          <h3>Analytics and BI</h3>
+          <p>Power BI (advanced), Grafana, Tableau, time-series analytics, predictive maintenance, root cause analysis</p>
+        </div>
+        <div>
+          <h3>Development</h3>
+          <p>C#, Python, SQL, JavaScript and TypeScript, PHP, R, Bash. ASP.NET Core (.NET 8), Entity Framework Core, Angular, Laravel, Vue.js, Blazor</p>
+        </div>
+        <div>
+          <h3>Databases and platforms</h3>
+          <p>SQL Server, PostgreSQL, MySQL, MongoDB, Pronto Xi, JDE. Microsoft Azure, Azure DevOps, Docker, Git, CI/CD, IIS</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section contact" id="contact">
+    <div class="wrap">
+      <h2>Get in touch</h2>
+      <p class="lead">I'm open to data engineering and analytics roles. The quickest way to reach me is email.</p>
+      <div class="contact-links">
+        <a class="btn btn-primary" href="mailto:Zingallochongo@gmail.com">Zingallochongo@gmail.com</a>
+        <!-- TODO: replace the # in the two links below with your real profile URLs -->
+        <a class="btn" href="#" rel="noopener">https://www.linkedin.com/in/ngallo-chongo-6466a1195/?isSelfProfile=true</a>
+        <a class="btn" href="#" rel="noopener">https://github.com/Zingallo</a>
+        <a class="btn" href="Ngallo_Chongo_CV_2026.pdf" download>Download CV</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">Ngallo Chongo, Zambia. 2026.</div>
+</footer>
+
+<script>
+(function () {
+  var svg = document.getElementById('signal-svg');
+  var areaOut = document.getElementById('area');
+  var NS = 'http://www.w3.org/2000/svg';
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Seeded generator so the chart looks the same on every visit
+  function rng(seed) {
+    return function () {
+      seed |= 0; seed = seed + 0x6D2B79F5 | 0;
+      var t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+  }
+  function signal(t) {
+    return 0.5 + 0.22 * Math.sin(6.5 * t) + 0.12 * Math.sin(17 * t + 1) + 0.05 * Math.sin(41 * t);
+  }
+
+  var rand = rng(2026);
+  var samples = [];
+  var t = 0;
+  while (t < 1) {
+    samples.push({ t: Math.min(t, 1), v: signal(t) + (rand() - 0.5) * 0.04 });
+    t += 0.014 + rand() * 0.04;
+  }
+  samples.push({ t: 1, v: signal(1) });
+
+  var cumulative = [0];
+  for (var i = 1; i < samples.length; i++) {
+    var a = samples[i - 1], b = samples[i];
+    cumulative.push(cumulative[i - 1] + (a.v + b.v) / 2 * (b.t - a.t) * 100);
+  }
+
+  function el(name, attrs) {
+    var n = document.createElementNS(NS, name);
+    for (var k in attrs) n.setAttribute(k, attrs[k]);
+    return n;
+  }
+
+  var clipRect;
+  function draw(animate) {
+    var W = svg.clientWidth || 1000;
+    var H = Math.max(200, Math.min(300, W * 0.28));
+    var top = 16, bottom = 22;
+    var base = H - bottom;
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+    svg.setAttribute('height', H);
+    svg.innerHTML = '';
+
+    var X = function (tt) { return tt * W; };
+    var Y = function (v) { return top + (1 - v) * (base - top); };
+
+    var defs = el('defs', {});
+    var clip = el('clipPath', { id: 'reveal' });
+    clipRect = el('rect', { x: 0, y: 0, width: animate ? 0 : W, height: H });
+    clip.appendChild(clipRect);
+    defs.appendChild(clip);
+    svg.appendChild(defs);
+
+    svg.appendChild(el('line', { x1: 0, x2: W, y1: base, y2: base, stroke: '#1F2F47', 'stroke-width': 1 }));
+
+    var g = el('g', { 'clip-path': 'url(#reveal)' });
+    for (var i = 1; i < samples.length; i++) {
+      var a = samples[i - 1], b = samples[i];
+      var pts = [X(a.t), base, X(a.t), Y(a.v), X(b.t), Y(b.v), X(b.t), base].join(' ');
+      g.appendChild(el('polygon', { points: pts, fill: 'rgba(79,209,197,0.13)', stroke: 'rgba(79,209,197,0.28)', 'stroke-width': 1 }));
+    }
+    var line = samples.map(function (s) { return X(s.t) + ',' + Y(s.v); }).join(' ');
+    g.appendChild(el('polyline', { points: line, fill: 'none', stroke: '#4FD1C5', 'stroke-width': 2, 'stroke-linejoin': 'round' }));
+    samples.forEach(function (s) {
+      g.appendChild(el('circle', { cx: X(s.t), cy: Y(s.v), r: 3.2, fill: '#E3B65C' }));
+    });
+    svg.appendChild(g);
+
+    function areaAt(progress) {
+      var idx = 0;
+      while (idx + 1 < samples.length && samples[idx + 1].t <= progress) idx++;
+      return cumulative[idx];
+    }
+
+    if (!animate) {
+      areaOut.textContent = cumulative[cumulative.length - 1].toFixed(1);
+      return;
+    }
+    var start = null, dur = 3400;
+    function step(ts) {
+      if (start === null) start = ts;
+      var p = Math.min((ts - start) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      clipRect.setAttribute('width', eased * W);
+      areaOut.textContent = areaAt(eased).toFixed(1);
+      if (p < 1) requestAnimationFrame(step);
+      else areaOut.textContent = cumulative[cumulative.length - 1].toFixed(1);
+    }
+    requestAnimationFrame(step);
+  }
+
+  draw(!reduce);
+
+  var timer, lastW = svg.clientWidth;
+  window.addEventListener('resize', function () {
+    clearTimeout(timer);
+    timer = setTimeout(function () {
+      if (svg.clientWidth !== lastW) { lastW = svg.clientWidth; draw(false); }
+    }, 150);
+  });
+})();
+</script>
+</body>
+</html>
