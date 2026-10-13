@@ -9,6 +9,9 @@
 <meta property="og:title" content="Ngallo Chongo | Data Engineer">
 <meta property="og:description" content="ETL pipelines, reliability systems and dashboards for mining and health programmes.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://zingallo.github.io/NgalloChongo/">
+<meta property="og:image" content="https://zingallo.github.io/NgalloChongo/images/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230A1220'/%3E%3Cpath d='M8 44 L22 28 L32 38 L44 18 L56 30' fill='none' stroke='%234FD1C5' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -157,11 +160,65 @@
   .skills h3 { font-family: var(--display); font-size: 1.05rem; margin: 0 0 0.4rem; }
   .skills p { margin: 0; color: var(--muted); }
 
+
+  /* About */
+  .about { display: grid; grid-template-columns: 1fr; gap: 2rem 3rem; margin-top: 1.5rem; }
+  .about.has-photo { grid-template-columns: 1fr 15rem; align-items: start; }
+  .about p { margin: 0 0 1rem; max-width: 64ch; }
+  .about p.muted { color: var(--muted); }
+  .about .photo { margin: 0; }
+  .about .photo img { width: 100%; height: auto; border-radius: 14px; border: 1px solid var(--line); display: block; }
+
+  /* Numbers */
+  .numbers { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem 2rem; margin: 2.5rem 0 0; padding: 1.75rem 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .numbers dt { font-family: var(--display); font-weight: 700; font-size: clamp(1.9rem, 4vw, 2.6rem); line-height: 1; letter-spacing: -0.03em; color: var(--signal); margin: 0 0 0.4rem; }
+  .numbers dd { margin: 0; color: var(--muted); font-size: 0.95rem; line-height: 1.45; }
+  .numbers-note { color: var(--muted); font-size: 0.88rem; margin: 0.75rem 0 0; }
+
+  /* Screenshot galleries */
+  .p-body .shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; list-style: none; padding: 0; margin: 0; }
+  .shots li { margin: 0; }
+  .shot { display: block; width: 100%; padding: 0; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); cursor: zoom-in; overflow: hidden; transition: border-color 0.15s; }
+  .shot:hover { border-color: var(--signal); }
+  .shot img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: contain; background: #E9EDF2; }
+  .shots .cap { display: block; margin-top: 0.5rem; color: var(--muted); font-size: 0.9rem; line-height: 1.45; }
+
+  dialog.lightbox { width: min(1400px, 96vw); max-height: 94vh; padding: 0; border: 1px solid var(--line); border-radius: 14px; background: var(--panel); color: var(--text); }
+  dialog.lightbox::backdrop { background: rgba(4, 8, 16, 0.85); }
+  .lb-inner { display: grid; gap: 0.75rem; padding: 1rem; }
+  .lb-inner img { width: 100%; max-height: 78vh; object-fit: contain; border-radius: 8px; background: #fff; }
+  .lb-inner p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+  .lb-close { justify-self: end; }
+
+
+  /* Architecture flows */
+  .arch { margin: 0; }
+  .arch figcaption { font-family: var(--display); font-weight: 700; font-size: 1rem; color: var(--brass); margin: 0 0 0.75rem; }
+  .arch .flow { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(6, 1fr); gap: 0.9rem; }
+  .arch .flow li { position: relative; margin: 0; padding: 0.8rem 0.75rem; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; }
+  .arch .flow li:not(:last-child)::after { content: "\2192"; position: absolute; right: -0.9rem; top: 50%; width: 0.9rem; transform: translateY(-50%); text-align: center; color: var(--signal); font-weight: 700; }
+  .arch .flow strong { display: block; font-family: var(--display); font-size: 0.95rem; line-height: 1.25; margin-bottom: 0.3rem; }
+  .arch .flow span { display: block; color: var(--muted); font-size: 0.85rem; line-height: 1.4; }
+  .arch .arch-note { margin: 0.9rem 0 0; padding-left: 0.85rem; border-left: 3px solid var(--brass); color: var(--muted); font-size: 0.92rem; max-width: 70ch; }
+  @media (max-width: 980px) {
+    .arch .flow { grid-template-columns: 1fr; gap: 1.1rem; }
+    .arch .flow li:not(:last-child)::after { content: "\2193"; right: auto; left: 50%; top: auto; bottom: -1.1rem; width: auto; transform: translateX(-50%); }
+  }
+
+  /* Experience bullets */
+  .job ul.what { margin: 0; padding-left: 1.1rem; color: var(--muted); max-width: 70ch; }
+  .job ul.what li { margin-bottom: 0.3rem; }
+
   /* Contact */
   .contact { padding-bottom: 4rem; }
   .contact-links { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem; }
   footer { border-top: 1px solid var(--line); padding-block: 1.5rem; color: var(--muted); font-size: 0.9rem; }
 
+  @media (max-width: 860px) {
+    .numbers { grid-template-columns: repeat(2, 1fr); }
+    .about.has-photo { grid-template-columns: 1fr; }
+    .about .photo { max-width: 14rem; }
+  }
   @media (max-width: 720px) {
     .p-body, .skills { grid-template-columns: 1fr; }
     .job { grid-template-columns: 1fr; }
@@ -180,6 +237,7 @@
   <div class="wrap">
     <a class="brand" href="#top">Ngallo Chongo</a>
     <nav class="nav" aria-label="Main">
+      <a href="#about">About</a>
       <a href="#work">Work</a>
       <a href="#experience">Experience</a>
       <a href="#skills">Skills</a>
@@ -215,10 +273,34 @@
     </figure>
   </div>
 
+  <section class="section" id="about">
+    <div class="wrap">
+      <h2>About</h2>
+      <div class="about has-photo">
+        <div>
+          <p>I'm a data engineer based in Zambia. In four years I've worked in two very different settings: national HIV programmes, where accurate reporting to funders like PEPFAR depends on clean data, and a copper mine, where sensor data decides when a machine gets fixed. The job is the same in both: get trustworthy data from where it's created to where someone can act on it.</p>
+          <p>At First Quantum Minerals I build the pipelines, systems and dashboards behind predictive maintenance and equipment reliability, working with the maintenance and operations teams who use them.</p>
+          <p class="muted">I'm also studying for an MSc in Data Science at the Zambia Centre for Accountancy Studies, due to finish in 2027.</p>
+        </div>
+        <figure class="photo">
+          <img src="images/ngallo.jpg" alt="Portrait of Ngallo Chongo" width="480" height="600" onerror="this.closest('.about').classList.remove('has-photo');this.closest('figure').remove()">
+        </figure>
+      </div>
+
+      <dl class="numbers">
+        <div><dt>104</dt><dd>root cause analysis records managed in one system, 87 of them completed</dd></div>
+        <div><dt>117</dt><dd>corrective actions tracked from open to closed, with overdue items flagged</dd></div>
+        <div><dt>1,400+</dt><dd>work requests analysed by criticality and status</dd></div>
+        <div><dt>168</dt><dd>Smart Bolts mapped and monitored on a single ball mill</dd></div>
+      </dl>
+      <p class="numbers-note">Counts as shown in the dashboards on 12 October 2026.</p>
+    </div>
+  </section>
+
   <section class="section" id="work">
     <div class="wrap">
       <h2>Selected work</h2>
-      <p class="lead">Open a project to see what it does, how it's built and what changed. Company data stays private, so these are descriptions of the systems rather than live demos.</p>
+      <p class="lead">Open a project to see what it does, how it's built and what changed. Select a screenshot to enlarge it. Names, asset tags and comments are blurred, and the systems themselves are private.</p>
 
       <div class="projects">
 
@@ -246,6 +328,22 @@
               <h3>What changed</h3>
               <p>Reliability incidents became easier to see, root cause analysis followed one standard process, and maintenance decisions could be backed by data.</p>
             </div>
+                        <figure class="arch p-wide">
+              <figcaption>How the RCA system fits together</figcaption>
+              <ol class="flow">
+                <li><strong>Users</strong><span>Role-based access to every screen</span></li>
+                <li><strong>ASP.NET Core MVC</strong><span>Forms, workflows and screens, styled with Bootstrap 5</span></li>
+                <li><strong>Web API</strong><span>REST endpoints with server-side validation</span></li>
+                <li><strong>Entity Framework Core</strong><span>Data access between the API and the database</span></li>
+                <li><strong>SQL Server</strong><span>Incidents, RCA records, actions and an audit trail</span></li>
+                <li><strong>Power BI</strong><span>Reliability monitoring and executive dashboards</span></li>
+              </ol>
+              <p class="arch-note">Evidence for each investigation is attached as documents or URLs. The application is hosted on IIS.</p>
+            </figure>
+            <ul class="shots p-wide">
+              <li><button type="button" class="shot" data-full="images/rca-action-analytics.webp" data-cap="Action analytics: totals for completed, open and overdue actions, with search, status filter and a full register."><img src="images/rca-action-analytics.webp" alt="RCA action analytics screen with totals for completed, open and overdue actions and a searchable register" loading="lazy" width="1600" height="900"></button><span class="cap">Action analytics: totals for completed, open and overdue actions, with search, status filter and a full register.</span></li>
+              <li><button type="button" class="shot" data-full="images/rca-menu.webp" data-cap="Navigation: RCA submissions and RCA actions each have add, edit and analytics screens."><img src="images/rca-menu.webp" alt="Navigation menu for RCA submissions and RCA actions" loading="lazy" width="1600" height="900"></button><span class="cap">Navigation: RCA submissions and RCA actions each have add, edit and analytics screens.</span></li>
+            </ul>
             <ul class="stack p-wide"><li>ASP.NET Core MVC and Web API (.NET 8)</li><li>SQL Server</li><li>Entity Framework Core</li><li>Power BI</li><li>Bootstrap 5</li><li>IIS</li></ul>
           </div>
         </details>
@@ -274,6 +372,21 @@
               <h3>What changed</h3>
               <p>Process performance calculations became more reliable and manual extraction errors were removed.</p>
             </div>
+                        <figure class="arch p-wide">
+              <figcaption>How the PI System pipeline works</figcaption>
+              <ol class="flow">
+                <li><strong>OSIsoft PI System</strong><span>Time-series process data</span></li>
+                <li><strong>PI Web API</strong><span>Python extracts the data on each run</span></li>
+                <li><strong>Time-weighted integration</strong><span>Trapezoidal rule, with irregular sampling handled</span></li>
+                <li><strong>Validation</strong><span>Results checked against PI-calculated totals, time zones aligned</span></li>
+                <li><strong>SQL Server</strong><span>Analysis-ready datasets</span></li>
+                <li><strong>Power BI</strong><span>Reports built on the loaded data</span></li>
+              </ol>
+              <p class="arch-note">Runs on a schedule through Windows Task Scheduler, so nobody exports data by hand.</p>
+            </figure>
+            <ul class="shots p-wide">
+              <li><button type="button" class="shot" data-full="images/component-status.webp" data-cap="Component status for a set of pumps: tonnage reading against trigger and failure points, forecast dates and percent done to failure."><img src="images/component-status.webp" alt="Power BI table of pump component status with tonnage readings, trigger and failure points and forecast dates" loading="lazy" width="1600" height="900"></button><span class="cap">Component status for a set of pumps: tonnage reading against trigger and failure points, forecast dates and percent done to failure.</span></li>
+            </ul>
             <ul class="stack p-wide"><li>PI Web API</li><li>Python</li><li>SQL Server</li><li>Power BI</li><li>Windows Task Scheduler</li></ul>
           </div>
         </details>
@@ -301,6 +414,9 @@
               <h3>What changed</h3>
               <p>Teams could see current reliability data and act on it faster.</p>
             </div>
+                        <ul class="shots p-wide">
+              <li><button type="button" class="shot" data-full="images/work-requests-rca-dashboard.webp" data-cap="Work requests and root cause analysis in one view: totals, criticality, status and methodology."><img src="images/work-requests-rca-dashboard.webp" alt="Power BI summary of work requests and root cause analysis records with gauges, donut charts and bar charts" loading="lazy" width="1600" height="900"></button><span class="cap">Work requests and root cause analysis in one view: totals, criticality, status and methodology.</span></li>
+            </ul>
             <ul class="stack p-wide"><li>Power BI</li><li>SQL Server</li><li>SharePoint</li></ul>
           </div>
         </details>
@@ -327,6 +443,10 @@
               <h3>What changed</h3>
               <p>Maintenance teams could step in early and prevent costly mill shell damage.</p>
             </div>
+                        <ul class="shots p-wide">
+              <li><button type="button" class="shot" data-full="images/bolt-tension-dashboard.webp" data-cap="Tension trend and load level for one bolt, above an overview of every bolt on the mill."><img src="images/bolt-tension-dashboard.webp" alt="Dashboard showing tension trend for one bolt, load level, and tension for all bolts" loading="lazy" width="1600" height="900"></button><span class="cap">Tension trend and load level for one bolt, above an overview of every bolt on the mill.</span></li>
+              <li><button type="button" class="shot" data-full="images/ball-mill-bolt-map.webp" data-cap="Bolt map of a ball mill discharge end, with each Smart Bolt placed around the shell."><img src="images/ball-mill-bolt-map.webp" alt="Circular map of Smart Bolts around a ball mill discharge end" loading="lazy" width="1600" height="900"></button><span class="cap">Bolt map of a ball mill discharge end, with each Smart Bolt placed around the shell.</span></li>
+            </ul>
             <ul class="stack p-wide"><li>IoT sensors</li><li>ETL</li><li>Power BI</li><li>SQL Server</li></ul>
           </div>
         </details>
@@ -353,6 +473,9 @@
               <h3>What changed</h3>
               <p>Early detection of equipment degradation improved uptime.</p>
             </div>
+                        <ul class="shots p-wide">
+              <li><button type="button" class="shot" data-full="images/triaxial-telemetry.webp" data-cap="Telemetry for vibration velocity, acceleration and temperature, with alert thresholds drawn on each chart."><img src="images/triaxial-telemetry.webp" alt="Telemetry charts for vibration velocity, acceleration and temperature with alert thresholds" loading="lazy" width="1600" height="900"></button><span class="cap">Telemetry for vibration velocity, acceleration and temperature, with alert thresholds drawn on each chart.</span></li>
+            </ul>
             <ul class="stack p-wide"><li>Dynamox sensors</li><li>Python</li><li>SQL Server</li><li>Power BI</li><li>Machine learning</li></ul>
           </div>
         </details>
@@ -426,7 +549,14 @@
           <div>
             <h3>Data Analyst, Engineering and Reliability</h3>
             <p class="org">First Quantum Minerals, North-Western Province</p>
-            <p class="what">Build pipelines that bring IoT sensor, PI System and ERP data (Pronto Xi, JDE) into one analytics platform, with real-time Power BI dashboards and scheduled ETL for reliability teams.</p>
+            <ul class="what">
+              <li>Design and maintain data pipelines for predictive maintenance and reliability analytics, bringing together IoT sensors, the PI System and ERP data (Pronto Xi, JDE).</li>
+              <li>Build real-time processing with Apache Kafka and Spark, and automated reporting pipelines for stakeholders.</li>
+              <li>Develop and deploy machine learning models that flag potential equipment failures.</li>
+              <li>Create Power BI and Grafana dashboards showing equipment health and operational KPIs.</li>
+              <li>Keep operational data accurate and consistent across PostgreSQL and NoSQL environments, within data governance and safety standards.</li>
+              <li>Mentor teams on data tools, machine learning models and reliability frameworks.</li>
+            </ul>
           </div>
         </div>
         <div class="job">
@@ -434,7 +564,13 @@
           <div>
             <h3>Applications Developer</h3>
             <p class="org">Right to Care (USAID), Lusaka</p>
-            <p class="what">Built and maintained the USAID Action HIV Insights reporting system, led the Blazor to Angular migration and ran code reviews for the development team.</p>
+            <ul class="what">
+              <li>Built new modules for the USAID Action HIV Insights reporting system in ASP.NET Core, Angular and C#.</li>
+              <li>Led the migration from Blazor to Angular for more than 200 healthcare workers, with the system running at 99.5% uptime.</li>
+              <li>Fixed defects from report to resolution, prioritised by severity, and addressed root causes.</li>
+              <li>Ran code reviews for security and performance, and kept the interface consistent with the design language.</li>
+              <li>Worked with SQL Server, Power BI, Python and Azure DevOps, and resolved system support tickets.</li>
+            </ul>
           </div>
         </div>
         <div class="job">
@@ -442,30 +578,48 @@
           <div>
             <h3>Assistant Data Support and Operations Manager</h3>
             <p class="org">Kazang Zambia, Lusaka</p>
-            <p class="what">Built inventory and customer management systems in Laravel and Vue.js, produced compliance reports for the Bank of Zambia, and cut manual data processing time by 60% through automated scripts.</p>
+            <ul class="what">
+              <li>Built and maintained the customer database, plus inventory and customer management systems in Laravel and Vue.js.</li>
+              <li>Produced daily, weekly and monthly sales and customer reports, and compliance reports for the Bank of Zambia.</li>
+              <li>Cut manual data processing time by 60% with automated data wrangling and error-handling scripts.</li>
+              <li>Ran exploratory analysis to spot trends and anomalies, and supported the sales teams.</li>
+            </ul>
           </div>
         </div>
         <div class="job">
           <div class="when">Jan 2022 to Oct 2022</div>
           <div>
             <h3>Data Analyst / Associate</h3>
-            <p class="org">CIDRZ, Lusaka</p>
-            <p class="what">Led data validation and analytics for health indicators, improved the Life Logistics App, and trained more than 30 data capturers on data quality and reporting.</p>
+            <p class="org">CIDRZ</p>
+            <ul class="what">
+              <li>Validated and verified programme data, including viral load coverage and early infant diagnosis results, for accurate monthly reports.</li>
+              <li>Kept the eLABS pending-result tracking lists up to date with laboratory staff and provincial coordinators.</li>
+              <li>Improved the Life Logistics App and reporting systems for laboratory data workflows.</li>
+              <li>Trained more than 30 data capturers and laboratory staff on data quality and management.</li>
+            </ul>
           </div>
         </div>
         <div class="job">
           <div class="when">Feb 2021 to Jan 2022</div>
           <div>
             <h3>Strategic Information Intern</h3>
-            <p class="org">CIDRZ, Lusaka</p>
-            <p class="what">Designed electronic data collection tools with ODK and RapidPro, supported PEPFAR MER indicators and automated repetitive project workflows with Python.</p>
+            <p class="org">CIDRZ</p>
+            <ul class="what">
+              <li>Designed electronic and paper data collection tools for the ACHIEVE and PROUD-Z projects and research studies, using ODK and RapidPro.</li>
+              <li>Worked on the ZISAMALE 2 TB project, which follows ATT and TPT clients, with ODK, RapidPro and Python tools.</li>
+              <li>Supported PEPFAR MER indicator reporting, mentored data staff and automated routine tasks with Python.</li>
+            </ul>
           </div>
         </div>
         <div class="job">
-          <div class="when">Graduated Nov 2019</div>
+          <div class="when">2018 to 2020</div>
           <div>
-            <h3>BSc Computer Science</h3>
-            <p class="org">Mulungushi University, Kabwe</p>
+            <h3>Early roles</h3>
+            <p class="org">Chesco-Tech and Trade Kings Group, Lusaka</p>
+            <ul class="what">
+              <li>Support Engineer Intern at Chesco-Tech (Dec 2019 to Apr 2020): PHP-based POS and bulk messaging systems, networking and hardware configuration.</li>
+              <li>IT Intern at Trade Kings Group (Aug 2018 to Feb 2019): fixed and improved existing software, built order data collection and storage, and gave day-to-day IT support.</li>
+            </ul>
           </div>
         </div>
       </div>
@@ -474,8 +628,8 @@
 
   <section class="section" id="skills">
     <div class="wrap">
-      <h2>Skills</h2>
-      <p class="lead">The tools I reach for most often.</p>
+      <h2>Skills and education</h2>
+      <p class="lead">The tools I reach for most often, and what I've studied.</p>
       <div class="skills">
         <div>
           <h3>Data engineering</h3>
@@ -493,6 +647,14 @@
           <h3>Databases and platforms</h3>
           <p>SQL Server, PostgreSQL, MySQL, MongoDB, Pronto Xi, JDE. Microsoft Azure, Azure DevOps, Docker, Git, CI/CD, IIS</p>
         </div>
+        <div>
+          <h3>Education</h3>
+          <p>MSc Data Science, Zambia Centre for Accountancy Studies (in progress, 2024 to 2027). BSc Computer Science, Mulungushi University (2015 to 2019).</p>
+        </div>
+        <div>
+          <h3>Certifications</h3>
+          <p>Tools for Data Science. Python for Data Science and AI. Python Project for Data Science.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -503,9 +665,8 @@
       <p class="lead">I'm open to data engineering and analytics roles. The quickest way to reach me is email.</p>
       <div class="contact-links">
         <a class="btn btn-primary" href="mailto:Zingallochongo@gmail.com">Zingallochongo@gmail.com</a>
-        <!-- TODO: replace the # in the two links below with your real profile URLs -->
-        <a class="btn" href="#" rel="noopener">https://www.linkedin.com/in/ngallo-chongo-6466a1195/?isSelfProfile=true</a>
-        <a class="btn" href="#" rel="noopener">https://github.com/Zingallo</a>
+        <a class="btn" href="https://www.linkedin.com/in/ngallo-chongo-6466a1195/" rel="noopener">LinkedIn</a>
+        <a class="btn" href="https://github.com/zingallo" rel="noopener">GitHub</a>
         <a class="btn" href="Ngallo_Chongo_CV_2026.pdf" download>Download CV</a>
       </div>
     </div>
@@ -515,6 +676,33 @@
 <footer>
   <div class="wrap">Ngallo Chongo, Zambia. 2026.</div>
 </footer>
+
+<dialog class="lightbox" id="lb" aria-label="Screenshot viewer">
+  <div class="lb-inner">
+    <img id="lb-img" alt="">
+    <p id="lb-cap"></p>
+    <button type="button" class="btn lb-close" id="lb-close">Close</button>
+  </div>
+</dialog>
+
+<script>
+(function () {
+  var lb = document.getElementById('lb');
+  if (!lb || !lb.showModal) return;
+  var img = document.getElementById('lb-img');
+  var cap = document.getElementById('lb-cap');
+  document.querySelectorAll('.shot').forEach(function (b) {
+    b.addEventListener('click', function () {
+      img.src = b.dataset.full;
+      img.alt = b.querySelector('img').alt;
+      cap.textContent = b.dataset.cap;
+      lb.showModal();
+    });
+  });
+  document.getElementById('lb-close').addEventListener('click', function () { lb.close(); });
+  lb.addEventListener('click', function (e) { if (e.target === lb) lb.close(); });
+})();
+</script>
 
 <script>
 (function () {
